@@ -27,7 +27,7 @@ The following **optional** features and many other, are being implemented as you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='todoapp.gif' title='TodoApp Video Walkthrough' width='450' height="800" alt='TodoApp Video Walkthrough' />
+<img src='todoapp.gif' title='TodoApp Video Walkthrough' width='280' height="500" alt='TodoApp Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
