@@ -1,9 +1,20 @@
 <resources>
-    <string name="app_name">Todo App</string>
+    <string name="app_name">to do</string>
     <string name="action_settings">Settings</string>
     <string name="add_item">Add a new item</string>
     <string name="btn_add_item">Add</string>
     <string name="title_activity_edit_item">Edit Item</string>
     <string name="edit_item_below">Edit Item Below:</string>
     <string name="btn_save">Save</string>
+    <string name="tv_todo">To do</string>
+    <string name="tv_due_date">Due Date</string>
+    <string name="tv_priority">Priority</string>
+    <string name="action_add_edit_todo">Add and Edit Todo</string>
+    <string name="tv_due_in">Due in</string>
+    <string name="tv_days">days</string>
+    <string-array name="priority_array">
+        <item>HIGH</item>
+        <item>MEDIUM</item>
+        <item>LOW</item>
+    </string-array>
 </resources>

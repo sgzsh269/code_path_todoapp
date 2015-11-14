@@ -1,0 +1,34 @@
+Applications Memory Usage (kB):
+Uptime: 1153360 Realtime: 1153360
+
+** MEMINFO in pid 16713 [com.example.android.todoapp] **
+                   Pss  Private  Private  Swapped     Heap     Heap     Heap
+                 Total    Dirty    Clean    Dirty     Size    Alloc     Free
+                ------   ------   ------   ------   ------   ------   ------
+  Native Heap     4712     4588        0        0    16712    16712     2743
+  Dalvik Heap     1588     1532        0        0     1959     1406      553
+ Dalvik Other      316      304        0        0                           
+        Stack      124      124        0        0                           
+    Other dev        4        0        4        0                           
+     .so mmap      815      100        4        0                           
+    .apk mmap      190        0       12        0                           
+    .ttf mmap       21        0        0        0                           
+    .dex mmap     2624        0     2620        0                           
+    code mmap     1197        0      184        0                           
+   image mmap      922      544        8        0                           
+   Other mmap        6        4        0        0                           
+      Unknown       93       92        0        0                           
+        TOTAL    12612     7288     2832        0    18671    18118     3296
+ 
+ Objects
+               Views:       31         ViewRootImpl:        1
+         AppContexts:        3           Activities:        1
+              Assets:        2        AssetManagers:        2
+       Local Binders:        7        Proxy Binders:       15
+    Death Recipients:        0
+     OpenSSL Sockets:        0
+ 
+ SQL
+         MEMORY_USED:        0
+  PAGECACHE_OVERFLOW:        0          MALLOC_SIZE:        0
+ 

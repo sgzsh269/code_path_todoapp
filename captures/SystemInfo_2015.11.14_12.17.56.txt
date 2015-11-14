@@ -1,0 +1,149 @@
+AGGREGATED OVER LAST 24 HOURS:
+System memory usage:
+  SOn /Norm: 4 samples:
+    Cached: 438MB min, 453MB avg, 460MB max
+    Free: 239MB min, 258MB avg, 272MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 30MB min, 34MB avg, 37MB max
+    Native: 84MB min, 88MB avg, 94MB max
+       Mod : 3 samples:
+    Cached: 458MB min, 461MB avg, 466MB max
+    Free: 205MB min, 234MB avg, 254MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 34MB min, 37MB avg, 41MB max
+    Native: 87MB min, 87MB avg, 88MB max
+
+Per-Package Stats:
+  * com.example.android.todoapp / u0a60 / v1:
+      * com.example.android.todoapp / u0a60 / v1:
+               TOTAL: 98% (10MB-19MB-28MB/7.8MB-15MB-25MB over 720)
+                 Top: 98% (10MB-19MB-28MB/7.8MB-15MB-25MB over 720)
+            (Cached): 0.08% (7.8MB-7.8MB-7.8MB/5.8MB-5.8MB-5.8MB over 1)
+
+Summary:
+  * com.example.android.todoapp / u0a60 / v1:
+           TOTAL: 98% (10MB-19MB-28MB/7.8MB-15MB-25MB over 720)
+             Top: 98% (10MB-19MB-28MB/7.8MB-15MB-25MB over 720)
+        (Cached): 0.08% (7.8MB-7.8MB-7.8MB/5.8MB-5.8MB-5.8MB over 1)
+
+Run time Stats:
+  SOn /Norm: +23h57m56s680ms
+       Mod : +10m28s120ms
+      TOTAL: +1d0h8m24s800ms
+
+Memory usage:
+  Kernel : 34MB (49 samples)
+  Native : 88MB (49 samples)
+  Persist: 118MB (480 samples)
+  Top    : 19MB (866 samples)
+  ImpFg  : 61MB (1164 samples)
+  ImpBg  : 15MB (708 samples)
+  Service: 30MB (1138 samples)
+  Receivr: 1.6KB (1101 samples)
+  Home   : 21MB (118 samples)
+  CchEmty: 68MB (1014 samples)
+  Cached : 453MB (49 samples)
+  Free   : 258MB (49 samples)
+  TOTAL  : 1.1GB
+  ServRst: 1.0 (116 samples)
+
+          Start time: 2015-11-08 20:44:00
+  Total elapsed time: +1d0h8m30s320ms (partial) libart.so
+
+AGGREGATED OVER LAST 3 HOURS:
+System memory usage:
+  SOn /Norm: 2 samples:
+    Cached: 459MB min, 460MB avg, 460MB max
+    Free: 239MB min, 244MB avg, 250MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 35MB min, 36MB avg, 37MB max
+    Native: 87MB min, 91MB avg, 94MB max
+       Mod : 2 samples:
+    Cached: 460MB min, 463MB avg, 466MB max
+    Free: 205MB min, 224MB avg, 243MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 37MB min, 39MB avg, 41MB max
+    Native: 87MB min, 87MB avg, 88MB max
+
+Per-Package Stats:
+  * com.example.android.todoapp / u0a60 / v1:
+      * com.example.android.todoapp / u0a60 / v1:
+               TOTAL: 94% (11MB-18MB-21MB/8.0MB-14MB-17MB over 127)
+                 Top: 94% (11MB-18MB-21MB/8.0MB-14MB-17MB over 127)
+
+Summary:
+  * com.example.android.todoapp / u0a60 / v1:
+           TOTAL: 94% (11MB-18MB-21MB/8.0MB-14MB-17MB over 127)
+             Top: 94% (11MB-18MB-21MB/8.0MB-14MB-17MB over 127)
+
+Run time Stats:
+  SOn /Norm: +4h29m51s380ms
+       Mod : +1m8s820ms
+      TOTAL: +4h31m0s200ms
+
+Memory usage:
+  Kernel : 38MB (32 samples)
+  Native : 89MB (32 samples)
+  Persist: 120MB (160 samples)
+  Top    : 18MB (342 samples)
+  ImpFg  : 62MB (407 samples)
+  ImpBg  : 15MB (129 samples)
+  Service: 29MB (367 samples)
+  Receivr: 1.4KB (378 samples)
+  Home   : 22MB (34 samples)
+  CchEmty: 70MB (362 samples)
+  Cached : 461MB (32 samples)
+  Free   : 234MB (32 samples)
+  TOTAL  : 1.1GB
+
+          Start time: 2015-11-13 02:50:30
+  Total elapsed time: +4h31m1s60ms (partial) libart.so
+
+CURRENT STATS:
+System memory usage:
+  SOn /Norm: 1 samples:
+    Cached: 460MB min, 460MB avg, 460MB max
+    Free: 239MB min, 239MB avg, 239MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 37MB min, 37MB avg, 37MB max
+    Native: 87MB min, 87MB avg, 87MB max
+       Mod : 2 samples:
+    Cached: 460MB min, 463MB avg, 466MB max
+    Free: 205MB min, 224MB avg, 243MB max
+    ZRam: 0.00 min, 0.00 avg, 0.00 max
+    Kernel: 37MB min, 39MB avg, 41MB max
+    Native: 87MB min, 87MB avg, 88MB max
+
+Per-Package Stats:
+  * com.example.android.todoapp / u0a60 / v1:
+      * com.example.android.todoapp / u0a60 / v1:
+               TOTAL: 83% (11MB-17MB-17MB/8.1MB-13MB-14MB over 37)
+                 Top: 83% (11MB-17MB-17MB/8.1MB-13MB-14MB over 37)
+
+Summary:
+  * com.example.android.todoapp / u0a60 / v1:
+           TOTAL: 83% (11MB-17MB-17MB/8.1MB-13MB-14MB over 37)
+             Top: 83% (11MB-17MB-17MB/8.1MB-13MB-14MB over 37)
+
+Run time Stats:
+  SOn /Norm: +1h28m33s620ms
+       Mod : +1m8s750ms (running)
+      TOTAL: +1h29m42s370ms
+
+Memory usage:
+  Kernel : 39MB (24 samples)
+  Native : 87MB (24 samples)
+  Persist: 122MB (112 samples)
+  Top    : 19MB (150 samples)
+  ImpFg  : 62MB (155 samples)
+  ImpBg  : 15MB (29 samples)
+  Service: 29MB (162 samples)
+  Receivr: 612 (179 samples)
+  Home   : 23MB (21 samples)
+  CchEmty: 66MB (217 samples)
+  Cached : 462MB (24 samples)
+  Free   : 229MB (24 samples)
+  TOTAL  : 1.1GB
+
+          Start time: 2015-11-14 02:12:51
+  Total elapsed time: +1h29m42s460ms (partial) libart.so

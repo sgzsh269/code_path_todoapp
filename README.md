@@ -4,8 +4,6 @@
 
 Submitted by: **Sagar Nilesh Shah**
 
-Time spent: **3** hours spent in total
-
 ## User Stories
 
 The following **required** functionality is completed:
@@ -14,30 +12,35 @@ The following **required** functionality is completed:
 * [x] User can **tap a todo item in the list and bring up an edit screen for the todo item** and then have any changes to the text reflected in the todo list.
 * [x] User can **persist todo items** and retrieve them properly on app restart
 
-The following **optional** features and many other, are being implemented as you read:
+The following **optional** features are completed:
 
-* [ ] Persist the todo items [into SQLite](http://guides.codepath.com/android/Persisting-Data-to-the-Device#sqlite) instead of a text file
-* [ ] Improve style of the todo items in the list [using a custom adapter](http://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView)
-* [ ] Add support for completion due dates for todo items (and display within listview item)
-* [ ] Use a [DialogFragment](http://guides.codepath.com/android/Using-DialogFragment) instead of new Activity for editing items
-* [ ] Add support for selecting the priority of each todo item (and display in listview item)
-* [ ] Tweak the style improving the UI / UX, play with colors, images or backgrounds
+* [x] Persist the todo items [into SQLite](http://guides.codepath.com/android/Persisting-Data-to-the-Device#sqlite) instead of a text file
+* [x] Improve style of the todo items in the list [using a custom adapter](http://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView)
+* [x] Add support for completion due dates for todo items (and display within listview item)
+* [x] Use a [DialogFragment](http://guides.codepath.com/android/Using-DialogFragment) instead of new Activity for editing items
+* [x] Add support for selecting the priority of each todo item (and display in listview item)
+* [x] Tweak the style improving the UI / UX, play with colors, images or backgrounds
+
+## Future work
+
+- Add functionality to set alarms/reminders per todo item and use system notification to be alerted
+
+- Add functionality to attach files such as voice recordings, images, videos, etc. and progress notes to todo items
+
+- Add functionality to be able to share todo items with other users for collaboration
+
+- Improve code and UI
+
+- Add tests
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='todoapp.gif' title='TodoApp Video Walkthrough' width='280' height="500" alt='TodoApp Video Walkthrough' />
+<img src='todoapp.gif' title='TodoApp Video Walkthrough' width='303' height="500" alt='TodoApp Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
-## Notes
-
-It was a good app to build to get started into Android Development. 
-
-Other than understanding app code, also spent time understanding Android as an OS, app execution and the code for some of the native helper functions.
-
-Also went through Material Design, good guidelines but from experience realise that design can be a challenge and can only be ironed out iteratively with user interaction.
 
 ## License
 

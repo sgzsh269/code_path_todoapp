@@ -1,0 +1,33 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        11c54bb3 com.example.android.todoapp/.MainActivity filter 11bcbacd
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+
+Key Set Manager:
+  [com.example.android.todoapp]
+      Signing KeySets: 6
+
+Packages:
+  Package [com.example.android.todoapp] (2d83f570):
+    userId=10060 gids=[]
+    pkg=Package{1a97d0e9 com.example.android.todoapp}
+    codePath=/data/app/com.example.android.todoapp-2
+    resourcePath=/data/app/com.example.android.todoapp-2
+    legacyNativeLibraryDir=/data/app/com.example.android.todoapp-2/lib
+    primaryCpuAbi=null
+    secondaryCpuAbi=null
+    versionCode=1 targetSdk=23
+    versionName=1.0
+    applicationInfo=ApplicationInfo{1181216e com.example.android.todoapp}
+    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    dataDir=/data/data/com.example.android.todoapp
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2015-11-14 12:24:50
+    firstInstallTime=2015-11-07 14:19:13
+    lastUpdateTime=2015-11-14 12:24:51
+    signatures=PackageSignatures{153ef00f [338af89c]}
+    permissionsFixed=true haveGids=true installStatus=1
+    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    User 0:  installed=true hidden=false stopped=false notLaunched=false enabled=0
