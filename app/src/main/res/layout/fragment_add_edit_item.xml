@@ -16,25 +16,25 @@
         <CheckBox
             android:id="@+id/checkbox_todo_completed"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/iv_icon_save"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginLeft="@dimen/view_margin_left"
-            android:src="@android:drawable/ic_menu_save"
             android:layout_marginTop="4dp"
-            android:tint="@android:color/black"/>
+            android:src="@android:drawable/ic_menu_save"
+            android:tint="@android:color/black" />
 
         <ImageView
             android:id="@+id/iv_icon_exit"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginLeft="@dimen/view_margin_left"
-            android:src="@android:drawable/ic_menu_close_clear_cancel"
             android:layout_marginTop="4dp"
-            android:tint="@android:color/holo_red_dark"/>
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:tint="@android:color/holo_red_dark" />
 
     </LinearLayout>
 
@@ -107,7 +107,48 @@
                 <Spinner
                     android:id="@+id/spinner_todo_priority"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/view_margin_top"
+                android:orientation="horizontal">
+
+                <ToggleButton
+                    android:id="@+id/tbtn_reminder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:textOff="@string/tb_reminder"
+                    android:textOn="@string/tb_reminder" />
+
+                <LinearLayout
+                    android:id="@+id/ll_set_reminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:orientation="horizontal"
+                    android:visibility="invisible">
+
+                    <EditText
+                        android:id="@+id/et_todo_reminder_days"
+                        android:layout_width="36dp"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:text="1"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/tv_todo_reminder_day_before"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tv_reminder_day_before"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
             </LinearLayout>
 
 

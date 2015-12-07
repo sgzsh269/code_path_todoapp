@@ -6,6 +6,7 @@ import android.os.Parcelable;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -17,19 +18,23 @@ public class TodoItem implements Parcelable {
     private String timeleft;
     private String priority;
     private Boolean isCompleted;
+    private Boolean needsReminder;
+    private int reminderDays;
+    private Date reminderDate;
 
     public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public TodoItem() {
     }
 
-    public TodoItem(String desc, Date dueDate, String priority, Boolean isCompleted) {
+    public TodoItem(String desc, Date dueDate, String priority, Boolean isCompleted, Boolean needsReminder, int reminderDays) {
         setDbId(-1);
         setDesc(desc);
         setDueDate(dueDate);
         setPriority(priority);
         isCompleted(isCompleted);
-
+        needsReminder(needsReminder);
+        setReminderDays(reminderDays);
     }
 
     protected TodoItem(Parcel in) {
@@ -38,6 +43,8 @@ public class TodoItem implements Parcelable {
             setDueDate(in.readString());
             setPriority(in.readString());
             isCompleted(Boolean.parseBoolean(in.readString()));
+            needsReminder(Boolean.parseBoolean(in.readString()));
+            setReminderDays(Integer.parseInt(in.readString()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -92,6 +99,18 @@ public class TodoItem implements Parcelable {
         this.timeleft = timeleft;
     }
 
+    private void calculateReminderDate() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dueDate);
+        cal.add(Calendar.DATE, -reminderDays);
+        reminderDate = cal.getTime();
+    }
+
+    private void calculateReminderDays() {
+        long diff = dueDate.getTime() - reminderDate.getTime();
+        reminderDays = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -104,6 +123,8 @@ public class TodoItem implements Parcelable {
         dest.writeString(strDueDate);
         dest.writeString(priority);
         dest.writeString(isCompleted.toString());
+        dest.writeString(needsReminder.toString());
+        dest.writeString(String.valueOf(reminderDays));
     }
 
     public String getDesc() {
@@ -161,5 +182,40 @@ public class TodoItem implements Parcelable {
 
     public String getTimeleft() {
         return timeleft;
+    }
+
+    public void setReminderDays(int reminderDays) {
+        this.reminderDays = reminderDays;
+        calculateReminderDate();
+    }
+
+    public int getReminderDays() {
+        return reminderDays;
+    }
+
+    public String getStrReminderDate() {
+        return simpleDateFormat.format(reminderDate);
+
+    }
+
+    public Date getReminderDate() {
+        return reminderDate;
+    }
+
+    public void setReminderDate(String reminderDate) throws ParseException {
+        this.reminderDate = simpleDateFormat.parse(reminderDate);
+        calculateReminderDays();
+    }
+
+    public Boolean needsReminder() {
+        return needsReminder;
+    }
+
+    public void needsReminder(Boolean needsReminder) {
+        this.needsReminder = needsReminder;
+    }
+
+    public void needsReminder(int needsReminder) {
+        needsReminder(needsReminder == 1);
     }
 }

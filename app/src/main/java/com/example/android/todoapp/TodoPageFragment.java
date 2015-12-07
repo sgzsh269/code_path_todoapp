@@ -14,7 +14,7 @@ import android.widget.ListView;
 public class TodoPageFragment extends Fragment {
 
     private ListView mLvItems;
-    private ActivityInterface mActivityInterface;
+    private ActivityInterface mActivity;
     private Boolean mIsCompletedFragment;
     private MainActivity.TodoItemAdapter mTodoItemAdapter;
 
@@ -36,13 +36,12 @@ public class TodoPageFragment extends Fragment {
 
         void showAddEditDialog(int position, MainActivity.TodoItemAdapter todoItemAdapter);
 
-
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mActivityInterface = (ActivityInterface) context;
+        mActivity = (ActivityInterface) context;
     }
 
     @Override
@@ -50,7 +49,7 @@ public class TodoPageFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         mIsCompletedFragment = getArguments().getBoolean("isCompletedFragment");
-        mTodoItemAdapter = mActivityInterface.getTodoItemAdapter(mIsCompletedFragment);
+        mTodoItemAdapter = mActivity.getTodoItemAdapter(mIsCompletedFragment);
         return inflater.inflate(R.layout.fragment_page_todo_list, container, false);
     }
 
@@ -61,7 +60,7 @@ public class TodoPageFragment extends Fragment {
         mLvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                mActivityInterface.deleteTodoItem(position, mTodoItemAdapter);
+                mActivity.deleteTodoItem(position, mTodoItemAdapter);
                 return true;
             }
         });
@@ -69,7 +68,7 @@ public class TodoPageFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 CheckBox lvCheckboxTodoCompleted = (CheckBox) view.findViewById(R.id.lv_checkbox_todo_completed);
-                mActivityInterface.showAddEditDialog(position, mTodoItemAdapter);
+                mActivity.showAddEditDialog(position, mTodoItemAdapter);
             }
         });
 
@@ -78,7 +77,6 @@ public class TodoPageFragment extends Fragment {
     }
 
     public void populateTodoItems() {
-        mActivityInterface.populateTodoItems(mTodoItemAdapter);
+        mActivity.populateTodoItems(mTodoItemAdapter);
     }
-
 }

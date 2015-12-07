@@ -1,6 +1,9 @@
 package com.example.android.todoapp;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -24,6 +27,7 @@ import com.example.android.todoapp.data.TodoAppDBHelper;
 import com.example.android.todoapp.data.TodoItem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements AddEditItemFragment.OnTodoSaveListener, TodoPageFragment.ActivityInterface {
 
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements AddEditItemFragme
 
     private ArrayList<TodoItem> mTodoItems;
     private ArrayList<TodoItem> mCompletedItems;
+    private HashMap<Long, Integer> mDbidToPositionMap;
 
     private TodoItemAdapter mTodoItemAdapter;
     private CompletedItemAdapter mCompletedItemAdapter;
@@ -40,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements AddEditItemFragme
     private ViewPager mViewPager;
     private TabLayout mTabLayout;
     private TodoPageFragmentAdapter mTodoPagerFragmentAdapter;
+
+    public static final String OPEN_ADD_EDIT_FRAGMENT = "ADD_EDIT_FRAGMENT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +57,10 @@ public class MainActivity extends AppCompatActivity implements AddEditItemFragme
         toolbar.setLogo(R.drawable.logo_todo);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+
         mTodoItems = new ArrayList<>();
         mCompletedItems = new ArrayList<>();
+        mDbidToPositionMap = new HashMap<>();
         mTodoAppDBHelper = TodoAppDBHelper.getInstance(this);
         mTodoItemAdapter = new TodoItemAdapter(this, mTodoItems);
         mCompletedItemAdapter = new CompletedItemAdapter(this, mCompletedItems);
@@ -79,6 +88,20 @@ public class MainActivity extends AppCompatActivity implements AddEditItemFragme
         mTabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         mViewPager.setAdapter(mTodoPagerFragmentAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
+
+        scheduleAlarm(this);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        checkIntentFromNotification(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        populateTodoItems(mTodoItemAdapter);
     }
 
     @Override
@@ -124,8 +147,18 @@ public class MainActivity extends AppCompatActivity implements AddEditItemFragme
     @Override
     public void populateTodoItems(TodoItemAdapter todoItemAdapter) {
         todoItemAdapter.getList().clear();
-        todoItemAdapter.addAll(mTodoAppDBHelper.getSortedTodoItems(todoItemAdapter.isCompleted()));
+        ArrayList<TodoItem> todoItems = mTodoAppDBHelper.getSortedTodoItems(todoItemAdapter.isCompleted());
+        todoItemAdapter.addAll(todoItems);
         todoItemAdapter.notifyDataSetChanged();
+        if (!todoItemAdapter.isCompleted()) {
+            for (int i = 0; i < todoItems.size(); i++) {
+                TodoItem todoItem = todoItems.get(i);
+                long dbId = todoItem.getDbId();
+                int position = i;
+                mDbidToPositionMap.put(dbId, position);
+            }
+        }
+
     }
 
     public void showAddEditDialog(int position, TodoItemAdapter todoItemAdapter) {
@@ -140,6 +173,16 @@ public class MainActivity extends AppCompatActivity implements AddEditItemFragme
             mAddEditFragment.setArguments(args);
         }
         mAddEditFragment.show(fm, "fragmentAddEditItem");
+    }
+
+    public void checkIntentFromNotification(Intent intent) {
+        if (intent.getAction().equals(OPEN_ADD_EDIT_FRAGMENT)) {
+            long dbId = intent.getLongExtra("dbId", -1);
+            if (dbId != -1) {
+                int position = mDbidToPositionMap.get(dbId);
+                showAddEditDialog(position, mTodoItemAdapter);
+            }
+        }
     }
 
     @Override
@@ -176,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements AddEditItemFragme
             lvCheckboxTodoCompleted.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CheckBox checkBox = (CheckBox)v;
+                    CheckBox checkBox = (CheckBox) v;
                     TodoItem todoItem = mTodoItems.get(position);
                     todoItem.isCompleted(checkBox.isChecked());
                     addUpdateTodoItem(todoItem, TodoItemAdapter.this);
@@ -217,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements AddEditItemFragme
             LinearLayout llTimeLeft = (LinearLayout) convertView.findViewById(R.id.ll_timeleft);
             ((LinearLayout) convertView).removeView(llTimeLeft);
             CheckBox lvCheckboxTodoCompleted = (CheckBox) convertView.findViewById(R.id.lv_checkbox_todo_completed);
-            ((LinearLayout)convertView).removeView(lvCheckboxTodoCompleted);
+            ((LinearLayout) convertView).removeView(lvCheckboxTodoCompleted);
 
             lvTvTodoDesc.setText(todoItem.getDesc());
 
@@ -263,4 +306,30 @@ public class MainActivity extends AppCompatActivity implements AddEditItemFragme
         }
     }
 
+    public static void scheduleAlarm(Context context) {
+        Intent intent = new Intent(context, AlarmReceiver.class);
+        PendingIntent pIntent = PendingIntent.getBroadcast(context, AlarmReceiver.REQUEST_CODE,
+                intent, PendingIntent.FLAG_NO_CREATE);
+        if (pIntent == null) {
+            pIntent = PendingIntent.getBroadcast(context, AlarmReceiver.REQUEST_CODE,
+                    intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            long firstMillis = System.currentTimeMillis();
+
+            AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+
+            alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
+                    AlarmManager.INTERVAL_HOUR, pIntent);
+
+        }
+
+    }
+
+    public static void cancelAlarm(Context context) {
+        Intent intent = new Intent(context, AlarmReceiver.class);
+        final PendingIntent pIntent = PendingIntent.getBroadcast(context, AlarmReceiver.REQUEST_CODE,
+                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        pIntent.cancel();
+        AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        alarm.cancel(pIntent);
+    }
 }
