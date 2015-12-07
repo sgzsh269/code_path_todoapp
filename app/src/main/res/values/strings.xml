@@ -12,6 +12,8 @@
     <string name="action_add_edit_todo">Add and Edit Todo</string>
     <string name="tv_due_in">Due in</string>
     <string name="tv_days">days</string>
+    <string name="tb_reminder">Reminder</string>
+    <string name="tv_reminder_day_before">day(s) before</string>
     <string-array name="priority_array">
         <item>HIGH</item>
         <item>MEDIUM</item>

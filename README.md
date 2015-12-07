@@ -21,9 +21,12 @@ The following **optional** features are completed:
 * [x] Add support for selecting the priority of each todo item (and display in listview item)
 * [x] Tweak the style improving the UI / UX, play with colors, images or backgrounds
 
-## Future work
+The following **additional** features have been implemented:
 
-- Add functionality to set alarms/reminders per todo item and use system notification to be alerted
+* Functionality to set a reminder per todo item using APIs such as Notification, Background Service, AlarmManager and BroadcastReceiver
+
+
+## Future work
 
 - Add functionality to attach files such as voice recordings, images, videos, etc. and progress notes to todo items
 
@@ -36,6 +39,9 @@ The following **optional** features are completed:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
+
+**Note: Reminder check through AlarmManager has been set to 1 hour interval.  
+This check is being forced by changing system time.**
 
 <img src='todoapp.gif' title='TodoApp Video Walkthrough' width='303' height="500" alt='TodoApp Video Walkthrough' />
 

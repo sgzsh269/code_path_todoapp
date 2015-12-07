@@ -10,10 +10,13 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.ToggleButton;
 
 import com.example.android.todoapp.data.TodoItem;
 
@@ -28,6 +31,10 @@ public class AddEditItemFragment extends DialogFragment {
     private ImageView mIvIconSave;
     private DatePicker mDatePickerTodoDate;
     private CheckBox mCheckboxTodoCompleted;
+    private ToggleButton mTBtnReminder;
+    private LinearLayout mLlSetReminder;
+    private EditText mEtReminderDays;
+
     private TodoItem mTodoItem;
 
     private OnTodoSaveListener mOnTodoSaveListener;
@@ -69,6 +76,9 @@ public class AddEditItemFragment extends DialogFragment {
         mIvIconSave = (ImageView) view.findViewById(R.id.iv_icon_save);
         mIvIconExit = (ImageView) view.findViewById(R.id.iv_icon_exit);
         mCheckboxTodoCompleted = (CheckBox) view.findViewById(R.id.checkbox_todo_completed);
+        mTBtnReminder = (ToggleButton) view.findViewById(R.id.tbtn_reminder);
+        mLlSetReminder = (LinearLayout) view.findViewById(R.id.ll_set_reminder);
+        mEtReminderDays = (EditText) view.findViewById(R.id.et_todo_reminder_days);
 
         mEtTodoDesc.requestFocus();
         getDialog().getWindow().setSoftInputMode(
@@ -99,17 +109,33 @@ public class AddEditItemFragment extends DialogFragment {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+                Boolean needsReminder = mTBtnReminder.isChecked();
+                int reminderDays = Integer.parseInt(mEtReminderDays.getText().toString());
 
                 if (mTodoItem == null) {
-                    mTodoItem = new TodoItem(todoDesc, dueDate, priority, isCompleted);
+                    mTodoItem = new TodoItem(todoDesc, dueDate, priority, isCompleted, needsReminder, reminderDays);
                 } else {
                     mTodoItem.setDesc(todoDesc);
                     mTodoItem.setDueDate(dueDate);
                     mTodoItem.setPriority(priority);
                     mTodoItem.isCompleted(isCompleted);
+                    mTodoItem.needsReminder(needsReminder);
+                    mTodoItem.setReminderDays(reminderDays);
                 }
                 mOnTodoSaveListener.onTodoSave(mTodoItem, mTodoItemAdapter);
                 dismiss();
+            }
+        });
+
+        mTBtnReminder.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mLlSetReminder.setVisibility(View.VISIBLE);
+                } else {
+                    mLlSetReminder.setVisibility(View.INVISIBLE);
+                }
             }
         });
 
@@ -125,6 +151,8 @@ public class AddEditItemFragment extends DialogFragment {
             mDatePickerTodoDate.updateDate(mTodoItem.getDueDate().getYear() + 1900, mTodoItem.getDueDate().getMonth(), mTodoItem.getDueDate().getDate());
             mSpinnerTodoPriority.setSelection(TodoItem.Priority.valueOf(mTodoItem.getPriority()).getIndex());
             mCheckboxTodoCompleted.setChecked(mTodoItem.isCompleted());
+            mTBtnReminder.setChecked(mTodoItem.needsReminder());
+            mEtReminderDays.setText(String.valueOf(mTodoItem.getReminderDays()));
         }
     }
 
